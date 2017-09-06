@@ -1,13 +1,12 @@
-#ifndef GPU_AO_BASIS_CUH
-#define GPU_AO_BASIS_CUH
-
-#include <votca/xtp/aobasis.h>
+#ifndef GPU_NUMERICAL_INTEGRATION
+#define GPU_NUMERICAL_INTEGRATION
 
 #include <cuda.h>
 #include <vector>
 
-#include <votca/xtp/gpu/GPUNumericalIntegrationTools.cuh>
 #include <votca/xtp/aobasis.h>
+#include <votca/xtp/gpu/GPUAOBasis.cuh>
+#include <votca/xtp/gpu/GPUGridBox.cuh>
 
 namespace votca { namespace xtp { namespace gpu {
 
@@ -17,11 +16,12 @@ namespace votca { namespace xtp { namespace gpu {
        ~GPUNumericalIntegration();
    private:
        int _device;
-       gpu_ao_basis _gpuAOB; 
-       std::vector<int> _shellMap; 
+       const AOBasis* _aob; 
+       GPUAOBasis _gpuAOB;
+       GPUGridBox _gpuGridBox; 
    };
    
 }}}
 
 
-#endif // GPU_AO_BASIS_CUH
+#endif // GPU_NUMERICAL_INTEGRATION_CUH
